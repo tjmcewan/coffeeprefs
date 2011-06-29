@@ -3,7 +3,13 @@
   %head
     %title CoffeePrefs
     = include_stylesheets :app
-    = include_javascripts :app
     = csrf_meta_tag
   %body
     = yield
+    
+    = include_javascripts :app
+    :javascript
+      var Coffee = {};
+      
+      Coffee.Organisation = new Organisation();
+      
