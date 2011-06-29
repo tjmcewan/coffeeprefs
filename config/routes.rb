@@ -4,7 +4,7 @@ Coffeeprefs::Application.routes.draw do
   resources :beverages
   resources :beverage_preferences
 
-
+  root :to => 'organisations#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
