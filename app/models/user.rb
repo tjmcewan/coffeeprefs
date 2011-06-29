@@ -7,6 +7,6 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
          
   embeds_many :beverage_preferences
-  emedded_in :organisation
+  embedded_in :organisation
 
 end
