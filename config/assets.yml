@@ -1,13 +1,13 @@
 javascripts:
   app:
-    - public/javascripts/jquery.min.js
+    - public/javascripts/jquery.js
     - public/javascripts/jquery_ujs.js
-    - public/javascripts/jquery-ui.min.js
-    - public/javascripts/underscore-min.js
-    - public/javascripts/backbone-min.js
-    - public/javascript/backbone.localStorage.js
+    - public/javascripts/jquery-ui.js
+    - public/javascripts/underscore.js
+    - public/javascripts/backbone.js
+    - public/javascripts/backbone.localStorage.js
     - public/javascripts/application.js
-    - public/javascripts/models.js
+    - public/javascripts/coffee/*.js
 stylesheets:
   app:
     - public/stylesheets/*.css
