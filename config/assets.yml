@@ -5,7 +5,9 @@ javascripts:
     - public/javascripts/jquery-ui.min.js
     - public/javascripts/underscore-min.js
     - public/javascripts/backbone-min.js
+    - public/javascript/backbone.localStorage.js
     - public/javascripts/application.js
+    - public/javascripts/models.js
 stylesheets:
   app:
     - public/stylesheets/*.css
