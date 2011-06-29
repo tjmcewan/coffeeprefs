@@ -5,6 +5,7 @@ javascripts:
     - public/javascripts/jquery-ui.js
     - public/javascripts/underscore.js
     - public/javascripts/backbone.js
+    - public/javascripts/modernizr.js
     - public/javascripts/backbone.localStorage.js
     - public/javascripts/application.js
     - public/javascripts/coffee/*.js
