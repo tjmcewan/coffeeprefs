@@ -1,6 +1,11 @@
 javascripts:
   app:
-    - public/javascripts/*.js
+    - public/javascripts/jquery_ujs.js
+    - public/javascripts/jquery.min.js
+    - public/javascripts/jquery-ui.min.js
+    - public/javascripts/underscore-min.js
+    - public/javascripts/backbone-min.js
+    - public/javascripts/application.js
 stylesheets:
   app:
     - public/stylesheets/*.css
