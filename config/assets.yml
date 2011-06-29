@@ -9,6 +9,7 @@ javascripts:
     - public/javascripts/backbone.localStorage.js
     - public/javascripts/application.js
     - public/javascripts/coffee/*.js
+    - app/views/jst/**/*.jst
 stylesheets:
   app:
     - public/stylesheets/*.css
