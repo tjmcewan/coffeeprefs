@@ -1,12 +1,12 @@
 javascripts:
   app:
-    - public/javascripts/jquery.js
-    - public/javascripts/jquery_ujs.js
-    - public/javascripts/jquery-ui.js
-    - public/javascripts/underscore.js
-    - public/javascripts/backbone.js
-    - public/javascripts/modernizr.js
-    - public/javascripts/backbone.localStorage.js
+    - public/javascripts/vendor/jquery.js
+    - public/javascripts/vendor/jquery_ujs.js
+    - public/javascripts/vendor/jquery-ui.js
+    - public/javascripts/vendor/underscore.js
+    - public/javascripts/vendor/backbone.js
+    - public/javascripts/vendor/modernizr.js
+    - public/javascripts/vendor/backbone.localStorage.js
     - public/javascripts/application.js
     - public/javascripts/coffee/*.js
     - app/views/jst/**/*.jst
