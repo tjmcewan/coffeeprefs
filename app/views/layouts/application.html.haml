@@ -5,11 +5,24 @@
     = include_stylesheets :app
     = csrf_meta_tag
   %body
-    = yield
-    
+    #coffeeprefs
+      #organisations 
+        %ol#organisation-list
+          %li
+            %input#new-organisation{:type => 'text'}
+
+    - unless Jammit.package_assets
+      = javascript_tag(Jammit.packager.pack_templates(:app))
+
+    = javascript_include_tag 'yepnope-min'
     = include_javascripts :app
+
     :javascript
-      var Coffee = {};
-      
-      Coffee.Organisation = new Organisation();
-      
+      CoffeePrefs = {};
+      var orgs = new Organisations;
+      CoffeePrefs.Creator = new Creator;
+      CoffeePrefs.Organisations = orgs.fetch({
+        success: function(col, res){
+          CoffeePrefs.Creator.render();
+        }
+      });

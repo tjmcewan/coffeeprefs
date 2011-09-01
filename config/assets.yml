@@ -7,9 +7,12 @@ javascripts:
     - public/javascripts/vendor/backbone.js
     - public/javascripts/vendor/modernizr.js
     - public/javascripts/vendor/backbone.localStorage.js
-    - public/javascripts/application.js
-    - public/javascripts/coffee/*.js
+
     - app/views/jst/**/*.jst
+    - public/javascripts/application.js
+    - public/javascripts/coffee/models.js
+    - public/javascripts/coffee/prefs.js
+    - public/javascripts/coffee/views.js
 stylesheets:
   app:
     - public/stylesheets/*.css

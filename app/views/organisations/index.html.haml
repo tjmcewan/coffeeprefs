@@ -1,6 +1,9 @@
-%ol
-  - if @organisations.present?
-    - @organisations.each do |o|
-      %li= o.name
-  - else
-    == No organisations yet - #{link_to "Create One!", new_organisation_path}
+#organisations 
+  %ol#organisation-list
+    - if @organisations.present?
+      - @organisations.each do |o|
+        :javascript
+          var org = new Organisation();
+          CoffeePrefs.Organisations.add(org);
+    %li
+      %input#new-organisation{:type => 'text'}
