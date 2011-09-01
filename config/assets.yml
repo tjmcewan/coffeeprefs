@@ -13,6 +13,7 @@ javascripts:
     - public/javascripts/coffee/models.js
     - public/javascripts/coffee/prefs.js
     - public/javascripts/coffee/views.js
+    - public/javascripts/coffee/routes.js
 stylesheets:
   app:
     - public/stylesheets/*.css

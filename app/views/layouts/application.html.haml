@@ -19,10 +19,16 @@
 
     :javascript
       CoffeePrefs = {};
-      var orgs = new Organisations;
+      CoffeePrefs.Organisations = new Organisations;
       CoffeePrefs.Creator = new Creator;
-      CoffeePrefs.Organisations = orgs.fetch({
-        success: function(col, res){
-          CoffeePrefs.Creator.render();
-        }
-      });
+
+    %script{:type => 'text/javascript'}
+      - @organisations.each do |org|
+        == var org = new Organisation(#{org.to_json.html_safe})
+        == CoffeePrefs.Organisations.add(org)
+
+      CoffeePrefs.Creator.render();
+
+  -# CoffeePrefs.Router = new Router;
+
+  -# Backbone.history.start();
