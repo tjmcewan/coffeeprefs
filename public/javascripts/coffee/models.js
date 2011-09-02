@@ -1,4 +1,5 @@
 (function() {
+  Backbone.Model.prototype.idAttribute = "_id";
   // Our basic organisation model has just a name and a collection of people
   Organisation = Backbone.Model.extend({
     // Properties: Name, People

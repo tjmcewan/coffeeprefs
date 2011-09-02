@@ -18,11 +18,11 @@
     list    : $('#organisation-list'),
     events  : {
       "keypress input":  "createOnEnter",
-      "click #organisation-list li": "selectOrganisation"
+      "click #organisation-list li .display": 'selectOrganisation'
     },
 
     initialize : function() {
-      _.bindAll(this, 'add','createOnEnter', 'render', 'selectOrganisation', 'open');
+      _.bindAll(this, 'add','createOnEnter', 'render', 'open', 'selectOrganisation');
     },
 
     open : function(organisation){
@@ -62,7 +62,32 @@
     },
 
     selectOrganisation: function(e){
-      //alert('Selected: ' + $(e.currentTarget).find('.organisation').attr('id'));
+      location.hash = '!/' + $(e.currentTarget).parent('.organisation').attr('id') + '/people';
+    }
+  });
+
+  PeopleCreator = Backbone.View.extend({
+    el:     $('#people'),
+    list:   $('#people-list'),
+    nameContainer: $('#people #organisation-name'),
+    events: {},
+
+    initialize: function(){
+      _.bindAll(this, 'open', 'render');
+    },
+
+    open: function(organisation){
+      CoffeePrefs.currentOrganisation = organisation;
+      this.render();
+    },
+
+    render: function(){
+      this.nameContainer.html(CoffeePrefs.currentOrganisation.get('name'));
+      _.each(CoffeePrefs.currentOrganisation.People, function(person){
+
+      });
+
+      return this;
     }
   });
 })();

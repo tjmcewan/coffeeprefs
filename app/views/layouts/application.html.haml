@@ -6,10 +6,16 @@
     = csrf_meta_tag
   %body
     #coffeeprefs
-      #organisations 
+      %section#organisations 
         %ol#organisation-list
           %li
             %input#new-organisation{:type => 'text'}
+
+      %section#people
+        %h1#organisation-name
+        %ol#people-list
+          %li
+            %input#new-person{:type => 'text'}
 
     - unless Jammit.package_assets
       = javascript_tag(Jammit.packager.pack_templates(:app))
@@ -21,14 +27,16 @@
       CoffeePrefs = {};
       CoffeePrefs.Organisations = new Organisations;
       CoffeePrefs.Creator = new Creator;
+      CoffeePrefs.PeopleCreator = new PeopleCreator;
 
     %script{:type => 'text/javascript'}
+      var org;
       - @organisations.each do |org|
-        == var org = new Organisation(#{org.to_json.html_safe})
+        == org = new Organisation(#{org.to_json.html_safe})
         == CoffeePrefs.Organisations.add(org)
 
       CoffeePrefs.Creator.render();
 
-  -# CoffeePrefs.Router = new Router;
+      CoffeePrefs.Router = new Router;
 
-  -# Backbone.history.start();
+      Backbone.history.start();
