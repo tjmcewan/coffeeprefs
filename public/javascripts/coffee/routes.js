@@ -14,9 +14,13 @@
 
     listPeople: function(id){
       var organisation = CoffeePrefs.Organisations.get(id);
-      CoffeePrefs.PeopleCreator.open(organisation);
-      $('section.current').removeClass('current');
-      _.delay(function(){ CoffeePrefs.PeopleCreator.el.addClass('current'); }, 250);
+      organisation.people.fetch({
+        success: function(){
+          CoffeePrefs.PeopleCreator.open(organisation);
+          $('section.current').removeClass('current');
+          _.delay(function(){ CoffeePrefs.PeopleCreator.el.addClass('current'); }, 250);
+        }
+      });
     }
    });
 })();

@@ -1,5 +1,6 @@
-class Organisation
+class Person
   include Mongoid::Document
   field :name, :type => String
-  embeds_many :people
+  embedded_in :organisation
 end
+

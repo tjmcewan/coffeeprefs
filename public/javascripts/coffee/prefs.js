@@ -3,7 +3,6 @@
     tagName   : 'li',
 
     initialize: function(){
-      //return this.render();
     },
     render : function() {
       $(this.el).html(this.template(this.model.toJSON()));
@@ -70,10 +69,12 @@
     el:     $('#people'),
     list:   $('#people-list'),
     nameContainer: $('#people #organisation-name'),
-    events: {},
+    events: {
+      "keypress input":  "create"
+    },
 
     initialize: function(){
-      _.bindAll(this, 'open', 'render');
+      _.bindAll(this, 'open', 'render', 'add', 'create');
     },
 
     open: function(organisation){
@@ -81,14 +82,49 @@
       this.render();
     },
 
-    render: function(){
-      this.nameContainer.html(CoffeePrefs.currentOrganisation.get('name'));
-      _.each(CoffeePrefs.currentOrganisation.People, function(person){
+    add: function(person){
+      var li = new PersonView({model: person });
+      this.list.append(li.render().el);
+      return this;
+    },
 
+    create: function(e){
+      var creator = this;
+      var text = $(e.currentTarget).val();
+      if (!text || e.keyCode != 13) return;
+
+      CoffeePrefs.currentOrganisation.people.create({name: text, 
+                                 organisationId: CoffeePrefs.currentOrganisation.id}, {
+        success: function(person){
+          creator.add(person);
+        }
       });
 
-      return this;
+      $(e.currentTarget).val('');
+    },
+
+    render: function(){
+      var creator = this;
+      creator.nameContainer.html(CoffeePrefs.currentOrganisation.get('name'));
+      _.each(CoffeePrefs.currentOrganisation.people.models, function(person){
+        creator.add(person);
+      });
+
+      return creator;
     }
+  });
+
+  PersonView = Backbone.View.extend({
+    tagName: 'li',
+    initialize: function(){
+    },
+    render : function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
+    },
+
+    template  : JST['people/person']
+
   });
 })();
 

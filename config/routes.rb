@@ -1,8 +1,12 @@
 Coffeeprefs::Application.routes.draw do
   devise_for :users
-  resources :organisations
+  resources :organisations do
+    resources :people
+  end
   resources :beverages
   resources :beverage_preferences
+  resources :people
+
 
   root :to => 'organisations#index'
 
