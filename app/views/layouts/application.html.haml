@@ -2,7 +2,8 @@
 %html
   %head
     %title CoffeePrefs
-    = include_stylesheets :app
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
     = csrf_meta_tag
   %body
     #coffeeprefs
@@ -18,12 +19,6 @@
         %ol#people-list
           %li
             %input#new-person{:type => 'text'}
-
-    - unless Jammit.package_assets
-      = javascript_tag(Jammit.packager.pack_templates(:app))
-
-    = javascript_include_tag 'yepnope-min'
-    = include_javascripts :app
 
     :javascript
       CoffeePrefs = {};
