@@ -2,13 +2,13 @@
 %html
   %head
     %title CoffeePrefs
-    = include_stylesheets :app
+    = stylesheet_link_tag "application"
     = csrf_meta_tag
   %body
     #coffeeprefs
       %nav
         %a{:href => '/'}Organisations
-      %section#organisations 
+      %section#organisations
         %ol#organisation-list
           %li
             %input#new-organisation{:type => 'text'}
@@ -19,27 +19,20 @@
           %li
             %input#new-person{:type => 'text'}
 
-    - unless Jammit.package_assets
-      = javascript_tag(Jammit.packager.pack_templates(:app))
+    = javascript_include_tag "vendor", "application"
 
-    = javascript_include_tag 'yepnope-min'
-    = include_javascripts :app
-
-    :javascript
+    %script{:type => 'text/javascript'}
       CoffeePrefs = {};
       CoffeePrefs.Organisations = new Organisations;
       CoffeePrefs.People = new People;
       CoffeePrefs.Creator = new Creator;
       CoffeePrefs.PeopleCreator = new PeopleCreator;
 
-    %script{:type => 'text/javascript'}
       var org;
       - @organisations.each do |org|
         == org = new Organisation(#{org.to_json.html_safe})
         == CoffeePrefs.Organisations.add(org)
 
       CoffeePrefs.Creator.render();
-
       CoffeePrefs.Router = new Router;
-
       Backbone.history.start();

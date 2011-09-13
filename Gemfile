@@ -1,18 +1,25 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.1.0'
 
-gem "mongoid", ">= 2.0.0.beta.19"
+gem "mongoid"
 gem "devise"
-gem "haml", ">= 3.0.0"
+gem "haml"
 gem "haml-rails"
 gem "hoptoad_notifier"
-gem "jammit"
 gem "jquery-rails"
 gem "bson_ext"
 gem 'inherited_resources'
+
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
-  gem "rspec-rails", ">= 2.0.1"
+  gem "rspec-rails"
   gem "capybara"
+end
+
+group :assets do
+  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+  gem 'ejs'
 end
