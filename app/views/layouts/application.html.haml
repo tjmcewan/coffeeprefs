@@ -2,14 +2,13 @@
 %html
   %head
     %title CoffeePrefs
-    = stylesheet_link_tag    "application"
-    = javascript_include_tag "application"
+    = stylesheet_link_tag "application"
     = csrf_meta_tag
   %body
     #coffeeprefs
       %nav
         %a{:href => '/'}Organisations
-      %section#organisations 
+      %section#organisations
         %ol#organisation-list
           %li
             %input#new-organisation{:type => 'text'}
@@ -20,21 +19,20 @@
           %li
             %input#new-person{:type => 'text'}
 
-    :javascript
+    = javascript_include_tag "vendor", "application"
+
+    %script{:type => 'text/javascript'}
       CoffeePrefs = {};
       CoffeePrefs.Organisations = new Organisations;
       CoffeePrefs.People = new People;
       CoffeePrefs.Creator = new Creator;
       CoffeePrefs.PeopleCreator = new PeopleCreator;
 
-    %script{:type => 'text/javascript'}
       var org;
       - @organisations.each do |org|
         == org = new Organisation(#{org.to_json.html_safe})
         == CoffeePrefs.Organisations.add(org)
 
       CoffeePrefs.Creator.render();
-
       CoffeePrefs.Router = new Router;
-
       Backbone.history.start();
