@@ -10,6 +10,7 @@ gem "hoptoad_notifier"
 gem "jquery-rails"
 gem "bson_ext"
 gem 'inherited_resources'
+gem 'thin'
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
