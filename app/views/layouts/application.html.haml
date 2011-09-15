@@ -3,7 +3,7 @@
   %head
     %title CoffeePrefs
     = stylesheet_link_tag "application"
-    = hoptoad_javascript_notifier.html_safe
+    = hoptoad_javascript_notifier.try(:html_safe)
     = csrf_meta_tag
   %body
     #coffeeprefs
