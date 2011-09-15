@@ -34,6 +34,5 @@
         == org = new Organisation(#{org.to_json.html_safe})
         == CoffeePrefs.Organisations.add(org)
 
-      CoffeePrefs.Creator.render();
       CoffeePrefs.Router = new Router;
       Backbone.history.start();
