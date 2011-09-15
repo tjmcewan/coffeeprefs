@@ -8,7 +8,12 @@ test:
 
 # set these environment variables on your prod server
 production:
+<% if ENV['MONGOLAB_URI'] %>
   uri: <%= ENV['MONGOLAB_URI'] %>
+<% else %>
+  host: localhost
+  database: coffeeprefs_development
+<% end %>
   
   # not needed for heroku / mongolab
   # host: <%= ENV['MONGOID_HOST'] %>
