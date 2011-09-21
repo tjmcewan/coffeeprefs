@@ -3,7 +3,7 @@
     routes : {
       ''            : 'newOrganisation',
       '/'           : 'newOrganisation',
-      ':id/people' : 'listPeople'
+      'organisations/:id/people' : 'listPeople'
     },
 
     newOrganisation : function() {

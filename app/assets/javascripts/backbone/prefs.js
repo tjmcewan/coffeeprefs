@@ -61,7 +61,7 @@
     },
 
     selectOrganisation: function(e){
-      CoffeePrefs.Router.navigate($(e.currentTarget).parent('.organisation').attr('id') + '/people', true);
+      CoffeePrefs.Router.navigate('organisations/' + $(e.currentTarget).parent('.organisation').attr('id') + '/people', true);
     }
   });
 
