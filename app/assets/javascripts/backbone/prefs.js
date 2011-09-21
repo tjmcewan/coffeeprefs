@@ -77,7 +77,7 @@
     },
 
     initialize: function(){
-      _.bindAll(this, 'open', 'render', 'add', 'create', 'wantsDrink');
+      _.bindAll(this, 'open', 'render', 'add', 'create');
     },
 
     open: function(organisation){

@@ -14,7 +14,6 @@ class PeopleController < InheritedResources::Base
 
   def update
     @organisation = Organisation.find(params[:organisationId])
-
     @person = @organisation.people.find(params[:id])
     @person.update_attributes(params[:person].merge(params))
 
