@@ -8,7 +8,7 @@
   %body
     #coffeeprefs
       %nav
-        %a{:href => '/'}Organisations
+        %a#organisations-link{:href => '/'}Organisations
       %section#organisations
         %ol#organisation-list
           %li
@@ -39,3 +39,8 @@
 
       CoffeePrefs.Router = new Router;
       Backbone.history.start({pushState: true});
+
+      $('#organisations-link').click(function(){
+      CoffeePrefs.Router.navigate('/', true);
+      return false;
+      });
