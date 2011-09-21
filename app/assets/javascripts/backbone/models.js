@@ -23,10 +23,7 @@
   People = Backbone.Collection.extend({
     // Reference to this collection's model.
     model: Person,
-    url: '/people',
+    url: '/people'
 
-    forOrganisation: function(organisation){
-      return _(this.models.filter(function(p) { return _.include(organisation.id, p.organisationId); }));
-    }
   });
 })();

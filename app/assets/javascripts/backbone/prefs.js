@@ -68,17 +68,21 @@
   PeopleCreator = Backbone.View.extend({
     el:     $('#people'),
     list:   $('#people-list'),
+    wantList: $('#want-drinks-list'),
     nameContainer: $('#people #organisation-name'),
     events: {
-      "keypress input":  "create"
+      "keypress input":  "create",
+      "click #people-list .person": "wantsDrink",
+      "click #want-drinks-list .person": "hasDrink"
     },
 
     initialize: function(){
-      _.bindAll(this, 'open', 'render', 'add', 'create');
+      _.bindAll(this, 'open', 'render', 'add', 'create', 'wantsDrink');
     },
 
     open: function(organisation){
       this.list.find('.person').parent().remove();
+      this.wantList.find('.person').parent().remove();
       CoffeePrefs.currentOrganisation = organisation;
       this.render();
     },
@@ -86,6 +90,9 @@
     add: function(person){
       var li = new PersonView({model: person });
       this.list.append(li.render().el);
+      if (person.get('wantsDrink'))
+        this.wantList.append(li.render().el);
+
       return this;
     },
 
@@ -112,6 +119,16 @@
       });
 
       return creator;
+    },
+
+    wantsDrink: function(e){
+      var person = CoffeePrefs.currentOrganisation.people.get($(e.currentTarget).attr('id'));
+      person.save({wantsDrink: true});
+    },
+
+    hasDrink: function(e){
+      var person = CoffeePrefs.currentOrganisation.people.get($(e.currentTarget).attr('id'));
+      person.save({wantsDrink: false});
     }
   });
 
