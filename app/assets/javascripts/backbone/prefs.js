@@ -28,7 +28,7 @@
       if (organisation === 'new'){
         // rendering a new org
       }
-
+      this.list.find('.organisation').parent().remove();
       this.render();
     },
 
@@ -61,7 +61,7 @@
     },
 
     selectOrganisation: function(e){
-      location.hash = '!/' + $(e.currentTarget).parent('.organisation').attr('id') + '/people';
+      CoffeePrefs.Router.navigate($(e.currentTarget).parent('.organisation').attr('id') + '/people', true);
     }
   });
 
@@ -78,6 +78,7 @@
     },
 
     open: function(organisation){
+      this.list.find('.person').parent().remove();
       CoffeePrefs.currentOrganisation = organisation;
       this.render();
     },

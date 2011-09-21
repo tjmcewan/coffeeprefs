@@ -6,7 +6,7 @@
     initialize: function(){
       this.people = new People;
       this.people.url = '/organisations/' + this.id + '/people';
-      this.people.bind('reset', this.updateCounts);
+      //this.people.bind('reset', this.updateCounts);
     }
   });
 
@@ -29,6 +29,4 @@
       return _(this.models.filter(function(p) { return _.include(organisation.id, p.organisationId); }));
     }
   });
-
-
 })();

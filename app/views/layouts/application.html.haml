@@ -16,9 +16,12 @@
 
       %section#people
         %h1#organisation-name
-        %ol#people-list
-          %li
-            %input#new-person{:type => 'text'}
+        #people
+          %ol#people-list
+            %li
+              %input#new-person{:type => 'text'}
+        #want-drinks
+          %ol#want-drinks-list
 
     = javascript_include_tag "application"
 
@@ -35,4 +38,4 @@
         == CoffeePrefs.Organisations.add(org)
 
       CoffeePrefs.Router = new Router;
-      Backbone.history.start();
+      Backbone.history.start({pushState: true});

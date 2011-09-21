@@ -3,7 +3,7 @@
     routes : {
       ''            : 'newOrganisation',
       '/'           : 'newOrganisation',
-      '/:id/people' : 'listPeople'
+      ':id/people' : 'listPeople'
     },
 
     newOrganisation : function() {
@@ -20,7 +20,7 @@
           $('section.current').removeClass('current');
           _.delay(function(){ CoffeePrefs.PeopleCreator.el.addClass('current'); }, 250);
         }
-      });
+     });
     }
    });
 })();
