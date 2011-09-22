@@ -77,12 +77,10 @@
     },
 
     initialize: function(){
-      _.bindAll(this, 'open', 'render', 'add', 'create');
+      _.bindAll(this, 'open', 'render', 'add', 'create', 'wantsDrink', 'hasDrink');
     },
 
     open: function(organisation){
-      this.list.find('.person').parent().remove();
-      this.wantList.find('.person').parent().remove();
       CoffeePrefs.currentOrganisation = organisation;
       this.render();
     },
@@ -112,6 +110,8 @@
     },
 
     render: function(){
+      this.list.find('.person').parent().remove();
+      this.wantList.find('.person').parent().remove();
       var creator = this;
       creator.nameContainer.html(CoffeePrefs.currentOrganisation.get('name'));
       _.each(CoffeePrefs.currentOrganisation.people.models, function(person){
@@ -124,11 +124,15 @@
     wantsDrink: function(e){
       var person = CoffeePrefs.currentOrganisation.people.get($(e.currentTarget).attr('id'));
       person.save({wantsDrink: true});
+
+      this.render();
     },
 
     hasDrink: function(e){
       var person = CoffeePrefs.currentOrganisation.people.get($(e.currentTarget).attr('id'));
       person.save({wantsDrink: false});
+
+      this.render();
     }
   });
 
