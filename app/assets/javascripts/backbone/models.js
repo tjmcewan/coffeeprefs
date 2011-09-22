@@ -18,6 +18,33 @@
 
   Person = Backbone.Model.extend({
     // Properties: Name, Preference, WantsDrink
+
+    signIn : function(name) {
+      var self = this;
+      $.ajax({
+        url       : '/sign-in',
+        type      : 'post',
+        data      : { name: name },
+        dataType  : 'json',
+        success   : function(attributes) {
+          self.set(attributes);
+          self.trigger('signin:success');
+        }
+      });
+    },
+
+    signOut : function() {
+      var self = this;
+      $.ajax({
+        url       : '/sign-out',
+        type      : 'get',
+        dataType  : 'json',
+        success   : function() {
+          self.set({ id: undefined, name: undefined });
+          self.trigger('signout:success');
+        }
+      });
+    }
   });
 
   People = Backbone.Collection.extend({

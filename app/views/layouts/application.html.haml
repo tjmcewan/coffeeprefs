@@ -9,6 +9,7 @@
     #coffeeprefs
       %nav
         %a.nav-link{:href => '/'}Organisations
+        %a.nav-link{:href => '/sign-in'}Sign In
       %section#organisations
         %ol#organisation-list
           %li
@@ -25,6 +26,8 @@
           %h2 People who want drinks
           %ol#want-drinks-list
 
+      %section#account
+        %h1 Sign in or create an account
     = javascript_include_tag "application"
 
     %script{ :type => 'text/javascript' }
@@ -34,6 +37,8 @@
       CoffeePrefs.People = new People;
       CoffeePrefs.Creator = new Creator;
       CoffeePrefs.PeopleCreator = new PeopleCreator;
+      CoffeePrefs.AccountManager = new AccountManager;
+      CoffeePrefs.currentUser = undefined;
 
       - if @organisations.present?
         - @organisations.each do |o|
@@ -47,6 +52,5 @@
       return false;
       });
       \//]]>
-
 
     = yield

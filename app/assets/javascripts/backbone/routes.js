@@ -3,7 +3,8 @@
     routes : {
       ''            : 'newOrganisation',
       '/'           : 'newOrganisation',
-      'organisations/:id/people' : 'listPeople'
+      'organisations/:id/people' : 'listPeople',
+      'sign-in'     : 'signIn'
     },
 
     newOrganisation : function() {
@@ -21,6 +22,11 @@
           _.delay(function(){ CoffeePrefs.PeopleCreator.el.addClass('current'); }, 250);
         }
      });
+    },
+
+    signIn: function(){
+      $('section.current').removeClass('current');
+      _.delay(function() { CoffeePrefs.AccountManager.el.addClass('current'); }, 250);
     }
    });
 })();

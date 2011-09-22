@@ -87,9 +87,10 @@
 
     add: function(person){
       var li = new PersonView({model: person });
-      this.list.append(li.render().el);
       if (person.get('wantsDrink'))
         this.wantList.append(li.render().el);
+      else
+        this.list.append(li.render().el);
 
       return this;
     },
@@ -134,6 +135,10 @@
 
       this.render();
     }
+  });
+
+  AccountManager = Backbone.View.extend({
+    el: $('#account')
   });
 
   PersonView = Backbone.View.extend({
