@@ -1,9 +1,2 @@
-#organisations 
-  %ol#organisation-list
-    - if @organisations.present?
-      - @organisations.each do |o|
-        :javascript
-          var org = new Organisation();
-          CoffeePrefs.Organisations.add(org);
-    %li
-      %input#new-organisation{:type => 'text'}
+:javascript
+  CoffeePrefs.Creator.render()

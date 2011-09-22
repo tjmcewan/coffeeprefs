@@ -43,7 +43,7 @@
       var text = $(e.currentTarget).val();
       if (!text || e.keyCode != 13) return;
 
-      var org = CoffeePrefs.Organisations.create({name: text}, 
+      var org = CoffeePrefs.Organisations.create({name: text},
                                                  {success: function(org) {
                                                     creator.add(org);
                                                    }

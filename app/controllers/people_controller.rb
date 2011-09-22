@@ -17,14 +17,17 @@ class PeopleController < InheritedResources::Base
     @person = @organisation.people.find(params[:id])
     @person.update_attributes(params[:person].merge(params))
 
-
     render :json => @person.to_json
   end
 
   def index
+    @organisations = Organisation.all
     @organisation = Organisation.find(params[:organisation_id])
 
-    render :json => @organisation.people.to_json
+    respond_to do |format|
+      format.json { render :json => @organisation.people.to_json}
+      format.html { render :action => "index" }
+    end
   end
 end
 

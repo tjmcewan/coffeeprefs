@@ -1,0 +1,10 @@
+-# - if @organisation.present?
+-#   :javascript
+-#     CoffeePrefs.currentOrganisation = new Organisation(#{@organisation.to_json.html_safe})
+-#   - @organisation.people.each do |o|
+-#     :javascript
+-#       var org = new Organisation(#{o.to_json.html_safe});
+-#       CoffeePrefs.Organisations.add(org);
+
+-# :javascript
+-#   CoffeePrefs.PeopleCreator.render()

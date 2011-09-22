@@ -25,17 +25,17 @@
 
     = javascript_include_tag "application"
 
-    %script{:type => 'text/javascript'}
+    %script{ :type => 'text/javascript' }
+      \//<![CDATA[
       CoffeePrefs = {};
       CoffeePrefs.Organisations = new Organisations;
       CoffeePrefs.People = new People;
       CoffeePrefs.Creator = new Creator;
       CoffeePrefs.PeopleCreator = new PeopleCreator;
 
-      var org;
-      - @organisations.each do |org|
-        == org = new Organisation(#{org.to_json.html_safe})
-        == CoffeePrefs.Organisations.add(org)
+      - if @organisations.present?
+        - @organisations.each do |o|
+          CoffeePrefs.Organisations.add(new Organisation(#{o.to_json.html_safe}));
 
       CoffeePrefs.Router = new Router;
       Backbone.history.start({pushState: true});
@@ -44,3 +44,7 @@
       CoffeePrefs.Router.navigate($(this).attr('href'), true);
       return false;
       });
+      \//]]>
+
+
+    = yield
