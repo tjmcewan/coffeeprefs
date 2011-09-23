@@ -28,7 +28,6 @@
       if (organisation === 'new'){
         // rendering a new org
       }
-      this.list.find('.organisation').parent().remove();
       this.render();
     },
 
@@ -52,6 +51,7 @@
     },
 
     render: function(){
+      this.list.find('.organisation').parent().remove();
       var creator = this;
       _.each(CoffeePrefs.Organisations.models, function(org){
         creator.add(org);
