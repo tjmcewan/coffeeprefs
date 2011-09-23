@@ -7,6 +7,7 @@ Coffeeprefs::Application.routes.draw do
   resources :beverage_preferences
   resources :people
 
+  match '/sign-in', :to => 'people#sign_in'
 
   root :to => 'organisations#index'
 

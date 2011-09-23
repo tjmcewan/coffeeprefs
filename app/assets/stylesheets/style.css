@@ -309,10 +309,10 @@ html {
   -khtml-transform:rotate(180deg);
   -webkit-transform:rotate(180deg);
 }
-section {
+#coffeeprefs > section {
   display: none;
 }
 
-section.current {
+#coffeeprefs > section.current {
   display: block;
 }

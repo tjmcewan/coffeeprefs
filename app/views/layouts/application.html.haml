@@ -9,25 +9,42 @@
     #coffeeprefs
       %nav
         %a.nav-link{:href => '/'}Organisations
-        %a.nav-link{:href => '/sign-in'}Sign In
+        %a#sign-in-link.nav-link{:href => '/sign-in', :style => 'display: none'}Sign In
+        %a#sign-out-link.nav-link{:href => '/sign-out', :style => 'display: none'}Sign Out
+        %a.nav-link{:href => '/preferences'}My Preferences
       %section#organisations
         %ol#organisation-list
           %li
             %input#new-organisation{:type => 'text', :placeholder => 'New organisation'}
 
       %section#people
-        %h1#organisation-name
-        #people
-          %h2 People
+        %header
+          #organisation-name
+        %section#all-people
+          %header
+            People
           %ol#people-list
             %li
               %input#new-person{:type => 'text', :placeholder => 'New person'}
-        #want-drinks
-          %h2 People who want drinks
+        %section#want-drinks
+          %header
+            People who want drinks
           %ol#want-drinks-list
 
       %section#account
-        %h1 Sign in or create an account
+        %section#sign-in
+          %header
+            Sign in
+          %form{:action => '/sign-in', :method => 'post'}
+            %input{:type => 'text', :name => 'name'}
+            %button Sign in
+
+      %section#preferences
+        %header
+          My preferences
+        %section#user-prefs
+
+
     = javascript_include_tag "application"
 
     %script{ :type => 'text/javascript' }
@@ -37,8 +54,9 @@
       CoffeePrefs.People = new People;
       CoffeePrefs.Creator = new Creator;
       CoffeePrefs.PeopleCreator = new PeopleCreator;
+      CoffeePrefs.currentPerson = new Person;
       CoffeePrefs.AccountManager = new AccountManager;
-      CoffeePrefs.currentUser = undefined;
+      CoffeePrefs.PreferenceManager = new PreferenceManager;
 
       - if @organisations.present?
         - @organisations.each do |o|
@@ -46,6 +64,11 @@
 
       CoffeePrefs.Router = new Router;
       Backbone.history.start({pushState: true});
+
+      if (CoffeePrefs.currentPerson.id === undefined){
+      $('#sign-in-link').show();
+      $('#sign-out-link').hide();
+      }
 
       $('.nav-link').click(function(){
       CoffeePrefs.Router.navigate($(this).attr('href'), true);

@@ -138,7 +138,53 @@
   });
 
   AccountManager = Backbone.View.extend({
-    el: $('#account')
+    el: $('#account'),
+    events  : {
+      'submit form:first' : 'signIn'
+    },
+
+    initialize : function() {
+      var manager = this;
+      CoffeePrefs.currentPerson.bind('signin:success',  function() {
+        manager.el.find('input[type="text"]').val('');
+        $('#sign-in-link').hide();
+        $('#sign-out-link').show();
+        CoffeePrefs.Router.navigate('/', true);
+      });
+      CoffeePrefs.currentPerson.bind('signout:success', function() { 
+        $('#sign-in-link').show();
+        $('#sign-out-link').hide();
+        CoffeePrefs.Router.navigate('/', true); 
+      });
+    },
+
+    signIn : function(event) {
+      event.preventDefault();
+      CoffeePrefs.currentPerson.signIn(this.el.find('#sign-in :text').val());
+    },
+
+    signUp : function(event) {
+      event.preventDefault();
+      CoffeePrefs.currentPerson.save(
+        { name : this.el.find('#sign-up :text').val() },
+        { success: function() { CoffeePrefs.Person.trigger('signin:success'); } }
+      );
+    }
+  });
+
+  PreferenceManager = Backbone.View.extend({
+    el: $('#preferences'),
+
+    initialize: function(){
+    },
+
+    render: function(){
+      var manager = this;
+      if (CoffeePrefs.currentPerson.get('id') === undefined)
+        this.el.find('#user-prefs').html('You must be signed in to manage preferences');
+      else
+        this.el.find('#user-prefs').html('Your preferred beverages');
+    }
   });
 
   PersonView = Backbone.View.extend({

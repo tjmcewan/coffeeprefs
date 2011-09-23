@@ -2,9 +2,10 @@
   Router = Backbone.Router.extend({
     routes : {
       ''            : 'newOrganisation',
-      '/'           : 'newOrganisation',
       'organisations/:id/people' : 'listPeople',
-      'sign-in'     : 'signIn'
+      'sign-in'     : 'signIn',
+      'sign-out'    : 'signOut',
+      'preferences' : 'preferences'
     },
 
     newOrganisation : function() {
@@ -27,6 +28,16 @@
     signIn: function(){
       $('section.current').removeClass('current');
       _.delay(function() { CoffeePrefs.AccountManager.el.addClass('current'); }, 250);
+    },
+
+    signOut: function(){
+      CoffeePrefs.currentPerson.signOut();
+    },
+
+    preferences: function(){
+      $('section.current').removeClass('current');
+      CoffeePrefs.PreferenceManager.render();
+      _.delay(function() { CoffeePrefs.PreferenceManager.el.addClass('current'); }, 250);
     }
    });
 })();

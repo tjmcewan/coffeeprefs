@@ -29,5 +29,12 @@ class PeopleController < InheritedResources::Base
       format.html { render :action => "index" }
     end
   end
+
+  def sign_in
+    @person = Person.where(:name => params[:name]).first
+    respond_to do |format|
+      format.json{ render :json => @person.to_json}
+    end
+  end
 end
 

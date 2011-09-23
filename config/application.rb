@@ -52,3 +52,14 @@ module Coffeeprefs
     config.assets.version = '1.0'
   end
 end
+
+module Mongoid
+  module Document
+    def as_json(options={})
+      attrs = super(options)
+      attrs["id"] = attrs["_id"]
+      attrs
+    end
+  end
+end
+
